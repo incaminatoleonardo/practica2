@@ -30,15 +30,15 @@ public class Concurso {
 
 			participantes.add(participante);
 
-			String nombreYFecha = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(LocalDate.now()) + ", "
-					+ participante.idParticipante() + ", " + this.idConcurso + "\n"; // NO
+			String fechaIdParticipanteIdConcurso = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
+					.format(LocalDate.now()) + ", " + participante.idParticipante() + ", " + this.idConcurso + "\n"; // NO
 			// ME
 			// TOMA
 			// EL
 			// SALTO
 			// DE
 			// LINEA
-			this.registro.registrar(nombreYFecha);
+			this.registro.registrar(fechaIdParticipanteIdConcurso);
 
 			if (this.fechaInicial.isEqual(LocalDate.now())) {
 				participante.sumarPuntaje();

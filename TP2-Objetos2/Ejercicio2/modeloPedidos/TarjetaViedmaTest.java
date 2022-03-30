@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import persistenciaArchivoTexto.EnDiscoRegistroDeCena;
+import persistenciaEnMemoria.EnMemoriaRegistroDeCena;
 
 class TarjetaViedmaTest {
 
@@ -24,7 +24,9 @@ class TarjetaViedmaTest {
 		itemMenu papas = new itemMenu("papas", 10);
 		CantidadItemMenu unasPapas = new CantidadItemMenu(papas, 1);
 
-		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new EnDiscoRegistroDeCena());
+		// Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new
+		// EnDiscoRegistroDeCena());
+		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new EnMemoriaRegistroDeCena());
 		pedido.añadirBebida(dosJugos);
 		pedido.añadirBebida(tresCocas);
 		pedido.añadirComida(unasPapas);

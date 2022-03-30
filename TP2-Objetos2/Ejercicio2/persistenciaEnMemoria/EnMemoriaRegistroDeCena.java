@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 import com.mysql.jdbc.PreparedStatement;
 
-import modeloConcurso.RegistroDeInscripcion;
+import modeloPedidos.RegistroCostoDeCena;
 
-public class EnMemoriaRegistroDeInscripcion implements RegistroDeInscripcion {
+public class EnMemoriaRegistroDeCena implements RegistroCostoDeCena {
 
 	@Override
 	public void registrar(String registro) {
@@ -17,7 +17,7 @@ public class EnMemoriaRegistroDeInscripcion implements RegistroDeInscripcion {
 
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/objetos2", "root", "");
 			PreparedStatement statement = (PreparedStatement) con
-					.prepareStatement("INSERT INTO registroinscripcion(registroInscripcion) VALUES (?)");
+					.prepareStatement("INSERT INTO registroscenas(registrosCenas) VALUES (?)");
 
 			statement.setString(1, registro);
 			statement.executeUpdate();
@@ -30,11 +30,7 @@ public class EnMemoriaRegistroDeInscripcion implements RegistroDeInscripcion {
 		} catch (SQLException e) {
 			System.out.println("Error al procesar consulta");
 
-		} catch (Exception e) {
-			System.out.println("Error al insertar un registro");
-
 		}
-
 	}
 
 }
