@@ -9,6 +9,7 @@ public class Cartera {
 		puntaje = +bonificacion;
 	}
 
+	@Override
 	public String toString() {
 		return "Cartera [puntaje=" + puntaje + "]";
 	}

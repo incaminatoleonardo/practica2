@@ -26,6 +26,7 @@ class MainTestPrimerDia {
 		// Creo el Participante
 		Cartera cartera = new Cartera();
 		Participante jose = new Participante("Jose", "1", cartera, 1);
+		StubFechaIdParticipanteIdConcurso stubRegistro = new StubFechaIdParticipanteIdConcurso();
 
 		// Creo el concurso
 		List<Participante> participantes = new ArrayList<>();
@@ -36,22 +37,33 @@ class MainTestPrimerDia {
 		Concurso concursoEnBase = new Concurso(participantes, LocalDate.now(), LocalDate.now().plusDays(7),
 				new EnMemoriaRegistroDeInscripcion(), 2);
 
+		Concurso concursoStub = new Concurso(participantes, LocalDate.now(), LocalDate.now().plusDays(7), stubRegistro,
+				3);
+
 		int cantidadPartipantes = 1;
 		int cantidadDePuntos = 10;
-		String registroIncripcion = "29/3/22, 1, 1";
-		StubFechaIdParticipanteIdConcurso stubRegistro = new StubFechaIdParticipanteIdConcurso(
-				DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(LocalDate.now()) + ", " + 1 + ", " + 1);
+		String registroIncripcion = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(LocalDate.now()) + ", "
+				+ 1 + ", " + 3 + "\n";
 
 		// EXERCISE
-		concursoEnDisco.inscribirParticipante(jose);
+		// concursoEnDisco.inscribirParticipante(jose);
 		// concursoEnBase.inscribirParticipante(jose);
+		concursoStub.inscribirParticipante(jose);
 
 		// VERIFY
 
 		assertEquals(cantidadPartipantes, concursoEnDisco.cantidadParticipantes());
-		assertEquals(LocalDate.now(), concursoEnDisco.obtenerFechaInicial()); // PREGUNTAR SI ESTA BIEN USADO
-		assertEquals(cantidadDePuntos, cartera.obtenerPuntaje()); // PREGUNTAR SI ESTA BIEN USADO
-		assertEquals(registroIncripcion, stubRegistro.fechaIdParticipanteIdConcurso());
+		// assertEquals(LocalDate.now(), concursoEnDisco.obtenerFechaInicial()); //
+		// PREGUNTAR SI ESTA BIEN USADO, no hace falta
+		assertEquals(cantidadDePuntos, cartera.obtenerPuntaje()); // participante tiene q pedir los puntos
+
+		System.out.println(registroIncripcion);
+		System.out.println(stubRegistro.fechaIdParticipanteIdConcurso());
+		assertEquals(registroIncripcion, stubRegistro.fechaIdParticipanteIdConcurso());// si puedo cambiar esto por
+		// una
+		// true o false
+		// hacer un assert que compare las cadenas de caracteres y que devuelva true o
+		// false
 
 	}
 

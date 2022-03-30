@@ -9,11 +9,13 @@ import modeloPedidos.RegistroCostoDeCena;
 
 public class EnDiscoRegistroDeCena implements RegistroCostoDeCena {
 
+	private String pathCasa = "C:\\Users\\Frodo\\Desktop\\Uni\\Objetos 2\\cenas.txt";
+	private String pathNote = "C:\\Users\\Marii\\OneDrive\\Escritorio\\Uni\\cenas.txt";
+
 	@Override
 	public void registrar(String registro) {
 		try {
-			Files.write(Paths.get("C:\\Users\\Frodo\\Desktop\\Uni\\Objetos 2\\cenas.txt"), registro.getBytes(),
-					StandardOpenOption.APPEND);
+			Files.write(Paths.get(pathNote), registro.getBytes(), StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			throw new RuntimeException("No se pudo guardar en disco", e);
 		}

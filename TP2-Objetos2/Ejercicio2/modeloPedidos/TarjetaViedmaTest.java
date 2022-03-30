@@ -47,12 +47,9 @@ class TarjetaViedmaTest {
 		// EXERCISE
 
 		// Tarjeta Viedma
-		assertEquals(resultadoEsperadoViedma, tarjetaViedma.CalcularPrecioTotal(pedido, propina5)); // Entra dos veces,
-																									// la segunda cuando
-																									// calcular propina,
-																									// por lo tanto me
-																									// escribe dos veces
-																									// en el archivo
+		assertEquals(resultadoEsperadoViedma, tarjetaViedma.CalcularPrecioTotal(pedido, propina5)); // ponerlo en
+																									// tarjeta
+		// que tarjeta solo reciba el double con monto total
 
 	}
 

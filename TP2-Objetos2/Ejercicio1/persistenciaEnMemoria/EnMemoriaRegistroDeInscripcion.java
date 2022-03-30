@@ -8,6 +8,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 import modeloConcurso.RegistroDeInscripcion;
 
+// llamar JDBC
 public class EnMemoriaRegistroDeInscripcion implements RegistroDeInscripcion {
 
 	@Override
@@ -27,13 +28,14 @@ public class EnMemoriaRegistroDeInscripcion implements RegistroDeInscripcion {
 			// (?)");
 			// st.setCursorName(registro);
 
+			// sacar todos los syso
 		} catch (SQLException e) {
 			System.out.println("Error al procesar consulta");
 
 		} catch (Exception e) {
 			System.out.println("Error al insertar un registro");
 
-		}
+		} // cerrar la conexion con finaly
 
 	}
 
