@@ -15,7 +15,7 @@ import modeloConcurso.Concurso;
 import modeloConcurso.Participante;
 import modeloConcurso.StubFechaIdParticipanteIdConcurso;
 import persistenciaArchivoTexto.EnDiscoRegistroDeInscripcion;
-import persistenciaEnMemoria.EnMemoriaRegistroDeInscripcion;
+import persistenciaEnJDBCInscripcion.EnJDBCRegistroDeInscripcion;
 
 class MainTestPrimerDia {
 
@@ -35,27 +35,29 @@ class MainTestPrimerDia {
 				new EnDiscoRegistroDeInscripcion(), 1);
 
 		Concurso concursoEnBase = new Concurso(participantes, LocalDate.now(), LocalDate.now().plusDays(7),
-				new EnMemoriaRegistroDeInscripcion(), 2);
+				new EnJDBCRegistroDeInscripcion(), 4);
 
 		Concurso concursoStub = new Concurso(participantes, LocalDate.now(), LocalDate.now().plusDays(7), stubRegistro,
 				3);
 
-		int cantidadPartipantes = 1;
+		int cantidadPartipantes = 3;
 		int cantidadDePuntos = 10;
 		String registroIncripcion = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(LocalDate.now()) + ", "
 				+ 1 + ", " + 3 + "\n";
 
 		// EXERCISE
-		// concursoEnDisco.inscribirParticipante(jose);
-		// concursoEnBase.inscribirParticipante(jose);
+		concursoEnDisco.inscribirParticipante(jose);
+		concursoEnBase.inscribirParticipante(jose);
 		concursoStub.inscribirParticipante(jose);
 
 		// VERIFY
 
 		assertEquals(cantidadPartipantes, concursoEnDisco.cantidadParticipantes());
-		// assertEquals(LocalDate.now(), concursoEnDisco.obtenerFechaInicial()); //
+		assertEquals(LocalDate.now(), concursoEnDisco.obtenerFechaInicial()); //
 		// PREGUNTAR SI ESTA BIEN USADO, no hace falta
-		assertEquals(cantidadDePuntos, cartera.obtenerPuntaje()); // participante tiene q pedir los puntos
+
+		assertEquals(cantidadDePuntos, jose.puntaje()); // participante tiene q pedir
+		// los puntos
 
 		System.out.println(registroIncripcion);
 		System.out.println(stubRegistro.fechaIdParticipanteIdConcurso());

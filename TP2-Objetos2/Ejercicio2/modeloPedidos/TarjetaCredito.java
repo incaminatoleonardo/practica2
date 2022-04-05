@@ -2,9 +2,9 @@ package modeloPedidos;
 
 public class TarjetaCredito {
 
-	public double CalcularPrecioTotal(Pedido pedido, Propina propina) {
+	public double CalcularPrecioTotal(Double costoTotalBebida, Double costoTotalComida) {
 
-		return pedido.sumarPedidoTotal() + propina.CalcularPropina(pedido);
+		return costoTotalBebida + costoTotalComida;
 
 	}
 

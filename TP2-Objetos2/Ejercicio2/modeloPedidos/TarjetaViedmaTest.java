@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import persistenciaEnMemoria.EnMemoriaRegistroDeCena;
+import persistenciaArchivoTexto.EnDiscoRegistroDeCena;
 
 class TarjetaViedmaTest {
 
@@ -24,9 +24,9 @@ class TarjetaViedmaTest {
 		itemMenu papas = new itemMenu("papas", 10);
 		CantidadItemMenu unasPapas = new CantidadItemMenu(papas, 1);
 
+		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new EnDiscoRegistroDeCena());
 		// Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new
-		// EnDiscoRegistroDeCena());
-		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new EnMemoriaRegistroDeCena());
+		// EnJDBCRegistroDeCena());
 		pedido.añadirBebida(dosJugos);
 		pedido.añadirBebida(tresCocas);
 		pedido.añadirComida(unasPapas);
@@ -47,9 +47,12 @@ class TarjetaViedmaTest {
 		// EXERCISE
 
 		// Tarjeta Viedma
-		assertEquals(resultadoEsperadoViedma, tarjetaViedma.CalcularPrecioTotal(pedido, propina5)); // ponerlo en
-																									// tarjeta
+		// assertEquals(resultadoEsperadoViedma,
+		// tarjetaViedma.CalcularPrecioTotal(pedido, propina5)); // ponerlo en
+		// tarjeta
 		// que tarjeta solo reciba el double con monto total
+
+		assertEquals(resultadoEsperadoViedma, pedido.sumarPedidoTotal(tarjetaViedma, propina5));
 
 	}
 

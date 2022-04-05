@@ -2,9 +2,10 @@ package modeloPedidos;
 
 public class TCreditoMastercard extends TarjetaCredito {
 
-	public double CalcularPrecioTotal(Pedido pedido, Propina propina) {
+	@Override
+	public double CalcularPrecioTotal(Double costoTotalBebida, Double costoTotalComida) {
 
-		return super.CalcularPrecioTotal(pedido, propina) - (pedido.sumarPedidoComida() * 2 / 100);
+		return super.CalcularPrecioTotal(costoTotalBebida, costoTotalComida) - (costoTotalComida * 2 / 100);
 
 	}
 

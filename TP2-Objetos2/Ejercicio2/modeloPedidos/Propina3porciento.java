@@ -2,8 +2,9 @@ package modeloPedidos;
 
 public class Propina3porciento extends Propina {
 
-	public double CalcularPropina(Pedido pedido) {
+	@Override
+	public double CalcularPropina(double costoTotal) {
 
-		return (pedido.sumarPedidoTotal() * 3 / 100);
+		return (costoTotal * 3 / 100);
 	}
 }

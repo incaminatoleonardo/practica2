@@ -1,4 +1,4 @@
-package persistenciaEnMemoria;
+package persistenciaEnJDBCInscripcion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ import com.mysql.jdbc.PreparedStatement;
 import modeloConcurso.RegistroDeInscripcion;
 
 // llamar JDBC
-public class EnMemoriaRegistroDeInscripcion implements RegistroDeInscripcion {
+public class EnJDBCRegistroDeInscripcion implements RegistroDeInscripcion {
 
 	@Override
 	public void registrar(String registro) {
@@ -22,11 +22,6 @@ public class EnMemoriaRegistroDeInscripcion implements RegistroDeInscripcion {
 
 			statement.setString(1, registro);
 			statement.executeUpdate();
-
-			// Statement st = con.createStatement();
-			// st.executeUpdate("INSERT INTO registroinscripcion(registroInscripcion) VALUES
-			// (?)");
-			// st.setCursorName(registro);
 
 			// sacar todos los syso
 		} catch (SQLException e) {

@@ -55,9 +55,10 @@ public class Pedido {
 		return costoComida;
 	}
 
-	public double sumarPedidoTotal() {
+	public double sumarPedidoTotal(TarjetaCredito tarjeta, Propina propina) {
 
-		double costoTotal = sumarPedidoBebida() + sumarPedidoComida();
+		double costoTotal = tarjeta.CalcularPrecioTotal(sumarPedidoBebida(), sumarPedidoComida())
+				+ propina.CalcularPropina(sumarPedidoBebida() + sumarPedidoComida());
 
 		String fechaYCostoTotal = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(LocalDate.now()) + " || "
 				+ costoTotal + "\n";

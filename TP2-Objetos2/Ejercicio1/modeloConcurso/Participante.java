@@ -19,6 +19,10 @@ public class Participante {
 		this.cartera.sumarPuntaje();
 	}
 
+	public int puntaje() {
+		return cartera.obtenerPuntaje();
+	}
+
 	/*
 	 * public String nombre() { return this.nombre; }
 	 */
@@ -32,6 +36,7 @@ public class Participante {
 		System.out.println(cartera.toString());
 	}
 
+	@Override
 	public String toString() {
 		return "Participante [nombre=" + nombre + ", dni=" + dni + ", cartera=" + cartera + "]";
 	}

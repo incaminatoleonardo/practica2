@@ -1,4 +1,4 @@
-package persistenciaEnMemoria;
+package persistenciaEnJDBC;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +8,7 @@ import com.mysql.jdbc.PreparedStatement;
 
 import modeloPedidos.RegistroCostoDeCena;
 
-public class EnMemoriaRegistroDeCena implements RegistroCostoDeCena {
+public class EnJDBCRegistroDeCena implements RegistroCostoDeCena {
 
 	@Override
 	public void registrar(String registro) {
