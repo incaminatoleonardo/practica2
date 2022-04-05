@@ -43,7 +43,7 @@ class MainTestPrimerDia {
 		int cantidadPartipantes = 3;
 		int cantidadDePuntos = 10;
 		String registroIncripcion = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(LocalDate.now()) + ", "
-				+ 1 + ", " + 3 + "\n";
+				+ 1 + ", " + 3 + System.lineSeparator();
 
 		// EXERCISE
 		concursoEnDisco.inscribirParticipante(jose);
@@ -53,14 +53,10 @@ class MainTestPrimerDia {
 		// VERIFY
 
 		assertEquals(cantidadPartipantes, concursoEnDisco.cantidadParticipantes());
-		assertEquals(LocalDate.now(), concursoEnDisco.obtenerFechaInicial()); //
-		// PREGUNTAR SI ESTA BIEN USADO, no hace falta
+		assertEquals(LocalDate.now(), concursoEnDisco.obtenerFechaInicial()); // Si hace falta
 
-		assertEquals(cantidadDePuntos, jose.puntaje()); // participante tiene q pedir
-		// los puntos
+		assertEquals(cantidadDePuntos, jose.puntaje());
 
-		System.out.println(registroIncripcion);
-		System.out.println(stubRegistro.fechaIdParticipanteIdConcurso());
 		assertEquals(registroIncripcion, stubRegistro.fechaIdParticipanteIdConcurso());// si puedo cambiar esto por
 		// una
 		// true o false

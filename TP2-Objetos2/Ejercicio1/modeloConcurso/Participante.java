@@ -23,10 +23,6 @@ public class Participante {
 		return cartera.obtenerPuntaje();
 	}
 
-	/*
-	 * public String nombre() { return this.nombre; }
-	 */
-
 	public int idParticipante() {
 		return this.idParticipante;
 	}

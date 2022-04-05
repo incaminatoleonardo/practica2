@@ -1,6 +1,5 @@
 package modeloConcurso;
 
-// debe implementar la interfaz
 public class StubFechaIdParticipanteIdConcurso implements RegistroDeInscripcion {
 
 	private String fechaIdParticipanteIdConcurso;

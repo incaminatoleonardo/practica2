@@ -61,7 +61,7 @@ public class Pedido {
 				+ propina.CalcularPropina(sumarPedidoBebida() + sumarPedidoComida());
 
 		String fechaYCostoTotal = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(LocalDate.now()) + " || "
-				+ costoTotal + "\n";
+				+ costoTotal + System.lineSeparator();
 		this.registro.registrar(fechaYCostoTotal);
 
 		return costoTotal;

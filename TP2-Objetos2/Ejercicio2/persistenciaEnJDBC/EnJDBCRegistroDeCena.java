@@ -21,14 +21,10 @@ public class EnJDBCRegistroDeCena implements RegistroCostoDeCena {
 
 			statement.setString(1, registro);
 			statement.executeUpdate();
-
-			// Statement st = con.createStatement();
-			// st.executeUpdate("INSERT INTO registroinscripcion(registroInscripcion) VALUES
-			// (?)");
-			// st.setCursorName(registro);
+			con.close(); // PREGUNTAR
 
 		} catch (SQLException e) {
-			System.out.println("Error al procesar consulta");
+			throw new RuntimeException("No se pudo guardar en BD", e);
 
 		}
 	}

@@ -1,4 +1,4 @@
-package modeloPedidos;
+package ejercicio2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -6,9 +6,16 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import modeloPedidos.CantidadItemMenu;
+import modeloPedidos.Pedido;
+import modeloPedidos.Propina;
+import modeloPedidos.Propina2porciento;
+import modeloPedidos.TCreditoComPlus;
+import modeloPedidos.TarjetaCredito;
+import modeloPedidos.itemMenu;
 import persistenciaArchivoTexto.EnDiscoRegistroDeCena;
 
-class TarjetaViedmaTest {
+class ComarcaPlusTest {
 
 	@Test
 	void test() {
@@ -25,8 +32,6 @@ class TarjetaViedmaTest {
 		CantidadItemMenu unasPapas = new CantidadItemMenu(papas, 1);
 
 		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new EnDiscoRegistroDeCena());
-		// Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new
-		// EnJDBCRegistroDeCena());
 		pedido.añadirBebida(dosJugos);
 		pedido.añadirBebida(tresCocas);
 		pedido.añadirComida(unasPapas);
@@ -34,25 +39,19 @@ class TarjetaViedmaTest {
 
 		// Crear Tarjeta
 
-		TarjetaCredito tarjetaViedma = new TarjetaCredito();
+		TarjetaCredito tarjetaPlus = new TCreditoComPlus();
 
 		// Crear Propina
 
-		Propina propina5 = new Propina5porciento();
+		Propina propina2 = new Propina2porciento();
 
 		// Creo Resultado esperado
 
-		double resultadoEsperadoViedma = 68.25;
+		double resultadoEsperadoPlus = 65.00;
 
 		// EXERCISE
 
-		// Tarjeta Viedma
-		// assertEquals(resultadoEsperadoViedma,
-		// tarjetaViedma.CalcularPrecioTotal(pedido, propina5)); // ponerlo en
-		// tarjeta
-		// que tarjeta solo reciba el double con monto total
-
-		assertEquals(resultadoEsperadoViedma, pedido.sumarPedidoTotal(tarjetaViedma, propina5));
+		assertEquals(resultadoEsperadoPlus, pedido.sumarPedidoTotal(tarjetaPlus, propina2));
 
 	}
 

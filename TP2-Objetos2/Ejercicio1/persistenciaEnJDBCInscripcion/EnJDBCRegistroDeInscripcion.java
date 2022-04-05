@@ -22,15 +22,12 @@ public class EnJDBCRegistroDeInscripcion implements RegistroDeInscripcion {
 
 			statement.setString(1, registro);
 			statement.executeUpdate();
+			con.close();
 
-			// sacar todos los syso
 		} catch (SQLException e) {
-			System.out.println("Error al procesar consulta");
+			throw new RuntimeException("No se pudo guardar en BD", e);
 
-		} catch (Exception e) {
-			System.out.println("Error al insertar un registro");
-
-		} // cerrar la conexion con finaly
+		} // cerrar la conexion con finaly, PREGUNTAR
 
 	}
 

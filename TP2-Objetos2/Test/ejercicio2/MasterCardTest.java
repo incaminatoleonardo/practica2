@@ -1,10 +1,19 @@
-package modeloPedidos;
+package ejercicio2;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import persistenciaArchivoTexto.EnDiscoRegistroDeCena;
+import modeloPedidos.CantidadItemMenu;
+import modeloPedidos.Pedido;
+import modeloPedidos.Propina;
+import modeloPedidos.Propina3porciento;
+import modeloPedidos.TCreditoMastercard;
+import modeloPedidos.TarjetaCredito;
+import modeloPedidos.itemMenu;
+import persistenciaEnJDBC.EnJDBCRegistroDeCena;
 
 class MasterCardTest {
 
@@ -22,7 +31,7 @@ class MasterCardTest {
 		itemMenu papas = new itemMenu("papas", 10);
 		CantidadItemMenu unasPapas = new CantidadItemMenu(papas, 1);
 
-		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new EnDiscoRegistroDeCena());
+		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new EnJDBCRegistroDeCena());
 		pedido.añadirBebida(dosJugos);
 		pedido.añadirBebida(tresCocas);
 		pedido.añadirComida(unasPapas);
@@ -40,8 +49,13 @@ class MasterCardTest {
 		// EXERCISE
 
 		// MasterCard
-		// assertEquals(resultadoEsperadoMasterCard,
-		// tarjetaMaster.CalcularPrecioTotal(pedido, propina3));
+		assertEquals(resultadoEsperadoMasterCard, pedido.sumarPedidoTotal(tarjetaMaster, propina3));
+
+		// assertEquals(resultadoEsperadoVisa, tarjetaVisa.CalcularPrecioTotal(pedido,
+		// propina3), 0.01);// aca me toma
+		// hasta el
+		// segundo
+		// digito
 
 	}
 

@@ -31,9 +31,8 @@ public class Concurso {
 			participantes.add(participante);
 
 			String fechaIdParticipanteIdConcurso = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
-					.format(LocalDate.now()) + ", " + participante.idParticipante() + ", " + this.idConcurso + "\n"; // pomer
-																														// siempre
-																														// System.lineSeparator()
+					.format(LocalDate.now()) + ", " + participante.idParticipante() + ", " + this.idConcurso
+					+ System.lineSeparator();
 			this.registro.registrar(fechaIdParticipanteIdConcurso);
 
 			if (this.fechaInicial.isEqual(LocalDate.now())) {

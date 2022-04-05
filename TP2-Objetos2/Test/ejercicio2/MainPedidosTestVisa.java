@@ -1,10 +1,22 @@
-package modeloPedidos;
+package ejercicio2;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import persistenciaArchivoTexto.EnDiscoRegistroDeCena;
+import modeloPedidos.CantidadItemMenu;
+import modeloPedidos.Pedido;
+import modeloPedidos.Propina;
+import modeloPedidos.Propina3porciento;
+import modeloPedidos.StubFechaYCostoTotal;
+import modeloPedidos.TCreditoVisa;
+import modeloPedidos.TarjetaCredito;
+import modeloPedidos.itemMenu;
 
 class MainPedidosTestVisa {
 
@@ -23,7 +35,9 @@ class MainPedidosTestVisa {
 		itemMenu papas = new itemMenu("papas", 10);
 		CantidadItemMenu unasPapas = new CantidadItemMenu(papas, 1);
 
-		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new EnDiscoRegistroDeCena());
+		StubFechaYCostoTotal fechaYCostoTotal = new StubFechaYCostoTotal();
+
+		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), fechaYCostoTotal);
 		pedido.añadirBebida(dosJugos);
 		pedido.añadirBebida(tresCocas);
 		pedido.añadirComida(unasPapas);
@@ -39,18 +53,14 @@ class MainPedidosTestVisa {
 		// Creo Resultado esperado
 
 		double resultadoEsperadoVisa = 66.02;
+		String resultadoEsperadoFechaYCosto = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
+				.format(LocalDate.now()) + " || " + resultadoEsperadoVisa + System.lineSeparator();
 
 		// EXERCISE
 
 		// Visa
-		// assertEquals(resultadoEsperadoVisa, tarjetaVisa.CalcularPrecioTotal(pedido,
-		// propina3));
-
-		// assertEquals(resultadoEsperadoVisa, tarjetaVisa.CalcularPrecioTotal(pedido,
-		// propina3), 0.01);// aca me toma
-		// hasta el
-		// segundo
-		// digito
+		pedido.sumarPedidoTotal(tarjetaVisa, propina3);
+		assertEquals(resultadoEsperadoFechaYCosto, fechaYCostoTotal.fechaYCostoTotal());
 
 	}
 

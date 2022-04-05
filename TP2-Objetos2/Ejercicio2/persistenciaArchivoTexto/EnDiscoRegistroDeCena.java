@@ -15,7 +15,7 @@ public class EnDiscoRegistroDeCena implements RegistroCostoDeCena {
 	@Override
 	public void registrar(String registro) {
 		try {
-			Files.write(Paths.get(pathNote), registro.getBytes(), StandardOpenOption.APPEND);
+			Files.write(Paths.get(pathCasa), registro.getBytes(), StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			throw new RuntimeException("No se pudo guardar en disco", e);
 		}
