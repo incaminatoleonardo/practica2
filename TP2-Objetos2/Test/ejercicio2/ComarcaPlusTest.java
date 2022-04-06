@@ -1,7 +1,11 @@
 package ejercicio2;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -10,10 +14,10 @@ import modeloPedidos.CantidadItemMenu;
 import modeloPedidos.Pedido;
 import modeloPedidos.Propina;
 import modeloPedidos.Propina2porciento;
+import modeloPedidos.StubFechaYCostoTotal;
 import modeloPedidos.TCreditoComPlus;
 import modeloPedidos.TarjetaCredito;
 import modeloPedidos.itemMenu;
-import persistenciaArchivoTexto.EnDiscoRegistroDeCena;
 
 class ComarcaPlusTest {
 
@@ -31,7 +35,9 @@ class ComarcaPlusTest {
 		itemMenu papas = new itemMenu("papas", 10);
 		CantidadItemMenu unasPapas = new CantidadItemMenu(papas, 1);
 
-		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new EnDiscoRegistroDeCena());
+		StubFechaYCostoTotal fechaYCostoTotal = new StubFechaYCostoTotal();
+
+		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), fechaYCostoTotal);
 		pedido.añadirBebida(dosJugos);
 		pedido.añadirBebida(tresCocas);
 		pedido.añadirComida(unasPapas);
@@ -48,10 +54,13 @@ class ComarcaPlusTest {
 		// Creo Resultado esperado
 
 		double resultadoEsperadoPlus = 65.00;
+		String resultadoEsperadoFechaYCosto = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
+				.format(LocalDate.now()) + " || " + resultadoEsperadoPlus + System.lineSeparator();
 
 		// EXERCISE
 
 		assertEquals(resultadoEsperadoPlus, pedido.sumarPedidoTotal(tarjetaPlus, propina2));
+		assertTrue(fechaYCostoTotal.sonIguales(resultadoEsperadoFechaYCosto));
 
 	}
 

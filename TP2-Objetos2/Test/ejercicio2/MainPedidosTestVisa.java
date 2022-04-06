@@ -1,5 +1,6 @@
 package ejercicio2;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
@@ -59,7 +60,9 @@ class MainPedidosTestVisa {
 		// EXERCISE
 
 		// Visa
-		pedido.sumarPedidoTotal(tarjetaVisa, propina3);
+		assertEquals(resultadoEsperadoVisa, pedido.sumarPedidoTotal(tarjetaVisa, propina3));
+		assertTrue(fechaYCostoTotal.sonIguales(resultadoEsperadoFechaYCosto)); // Esta es la forma correcta para no
+																				// hacer un get
 		assertEquals(resultadoEsperadoFechaYCosto, fechaYCostoTotal.fechaYCostoTotal());
 
 	}

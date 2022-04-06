@@ -1,5 +1,6 @@
 package ejercicio2;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
@@ -16,8 +17,6 @@ import modeloPedidos.Propina5porciento;
 import modeloPedidos.StubFechaYCostoTotal;
 import modeloPedidos.TarjetaCredito;
 import modeloPedidos.itemMenu;
-import persistenciaArchivoTexto.EnDiscoRegistroDeCena;
-import persistenciaEnJDBC.EnJDBCRegistroDeCena;
 
 class TarjetaViedmaTest {
 
@@ -35,19 +34,8 @@ class TarjetaViedmaTest {
 		itemMenu papas = new itemMenu("papas", 10);
 		CantidadItemMenu unasPapas = new CantidadItemMenu(papas, 1);
 
-		Pedido pedidoDisco = new Pedido(new ArrayList<>(), new ArrayList<>(), new EnDiscoRegistroDeCena());
-		pedidoDisco.añadirBebida(dosJugos);
-		pedidoDisco.añadirBebida(tresCocas);
-		pedidoDisco.añadirComida(unasPapas);
-		pedidoDisco.añadirComida(dosPanchos);
-
-		Pedido pedidoJDBC = new Pedido(new ArrayList<>(), new ArrayList<>(), new EnJDBCRegistroDeCena());
-		pedidoJDBC.añadirBebida(dosJugos);
-		pedidoJDBC.añadirBebida(tresCocas);
-		pedidoJDBC.añadirComida(unasPapas);
-		pedidoJDBC.añadirComida(dosPanchos);
-
 		StubFechaYCostoTotal fechaYCostoTotal = new StubFechaYCostoTotal();
+
 		Pedido pedidoStub = new Pedido(new ArrayList<>(), new ArrayList<>(), fechaYCostoTotal);
 		pedidoStub.añadirBebida(dosJugos);
 		pedidoStub.añadirBebida(tresCocas);
@@ -73,10 +61,9 @@ class TarjetaViedmaTest {
 		pedidoStub.sumarPedidoTotal(tarjetaViedma, propina5);
 
 		// Tarjeta Viedma
-		assertEquals(resultadoEsperadoViedma, pedidoDisco.sumarPedidoTotal(tarjetaViedma, propina5));
-		assertEquals(resultadoEsperadoViedma, pedidoJDBC.sumarPedidoTotal(tarjetaViedma, propina5));
 
-		assertEquals(resultadoEsperadoFechaYCosto, fechaYCostoTotal.fechaYCostoTotal());
+		assertEquals(resultadoEsperadoViedma, pedidoStub.sumarPedidoTotal(tarjetaViedma, propina5));
+		assertTrue(fechaYCostoTotal.sonIguales(resultadoEsperadoFechaYCosto));
 
 	}
 

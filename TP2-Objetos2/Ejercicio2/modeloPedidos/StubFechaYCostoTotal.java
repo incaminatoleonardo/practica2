@@ -14,4 +14,13 @@ public class StubFechaYCostoTotal implements RegistroCostoDeCena {
 		return this.fechaYCostoTotal;
 	}
 
+	public boolean sonIguales(String registro) {
+
+		if (this.fechaYCostoTotal.compareTo(registro) == 0) {
+			return true;
+		}
+
+		return false;
+	}
+
 }

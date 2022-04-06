@@ -1,7 +1,11 @@
 package ejercicio2;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -10,10 +14,10 @@ import modeloPedidos.CantidadItemMenu;
 import modeloPedidos.Pedido;
 import modeloPedidos.Propina;
 import modeloPedidos.Propina3porciento;
+import modeloPedidos.StubFechaYCostoTotal;
 import modeloPedidos.TCreditoMastercard;
 import modeloPedidos.TarjetaCredito;
 import modeloPedidos.itemMenu;
-import persistenciaEnJDBC.EnJDBCRegistroDeCena;
 
 class MasterCardTest {
 
@@ -31,7 +35,9 @@ class MasterCardTest {
 		itemMenu papas = new itemMenu("papas", 10);
 		CantidadItemMenu unasPapas = new CantidadItemMenu(papas, 1);
 
-		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), new EnJDBCRegistroDeCena());
+		StubFechaYCostoTotal fechaYCostoTotal = new StubFechaYCostoTotal();
+
+		Pedido pedido = new Pedido(new ArrayList<>(), new ArrayList<>(), fechaYCostoTotal);
 		pedido.añadirBebida(dosJugos);
 		pedido.añadirBebida(tresCocas);
 		pedido.añadirComida(unasPapas);
@@ -45,11 +51,14 @@ class MasterCardTest {
 
 		// Creo Resultado esperado
 		double resultadoEsperadoMasterCard = 66.27;
+		String resultadoEsperadoFechaYCosto = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
+				.format(LocalDate.now()) + " || " + resultadoEsperadoMasterCard + System.lineSeparator();
 
 		// EXERCISE
 
 		// MasterCard
 		assertEquals(resultadoEsperadoMasterCard, pedido.sumarPedidoTotal(tarjetaMaster, propina3));
+		assertTrue(fechaYCostoTotal.sonIguales(resultadoEsperadoFechaYCosto));
 
 		// assertEquals(resultadoEsperadoVisa, tarjetaVisa.CalcularPrecioTotal(pedido,
 		// propina3), 0.01);// aca me toma
