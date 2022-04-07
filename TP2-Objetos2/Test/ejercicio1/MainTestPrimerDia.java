@@ -40,14 +40,14 @@ class MainTestPrimerDia {
 		Concurso concursoStub = new Concurso(participantes, LocalDate.now(), LocalDate.now().plusDays(7), stubRegistro,
 				3);
 
-		int cantidadPartipantes = 3;
+		int cantidadPartipantes = 1;
 		int cantidadDePuntos = 10;
 		String registroIncripcion = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(LocalDate.now()) + ", "
 				+ 1 + ", " + 3 + System.lineSeparator();
 
 		// EXERCISE
-		concursoEnDisco.inscribirParticipante(jose);
-		concursoEnBase.inscribirParticipante(jose);
+		// concursoEnDisco.inscribirParticipante(jose);
+		// concursoEnBase.inscribirParticipante(jose);
 		concursoStub.inscribirParticipante(jose);
 
 		// VERIFY
