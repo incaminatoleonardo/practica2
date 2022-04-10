@@ -23,7 +23,6 @@ public class EnJDBCRegistroDeInscripcion implements RegistroDeInscripcion {
 
 			statement.setString(1, registro);
 			statement.executeUpdate();
-			con.close();
 
 		} catch (SQLException e) {
 			throw new RuntimeException("No se pudo guardar en BD", e);

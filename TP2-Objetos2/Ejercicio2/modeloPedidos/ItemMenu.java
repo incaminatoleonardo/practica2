@@ -1,11 +1,11 @@
 package modeloPedidos;
 
-public class itemMenu {
+public class ItemMenu {
 
 	private String descripcion;
 	private double costo;
 
-	public itemMenu(String descripcion, double costo) {
+	public ItemMenu(String descripcion, double costo) {
 		super();
 		this.descripcion = descripcion;
 		this.costo = costo;

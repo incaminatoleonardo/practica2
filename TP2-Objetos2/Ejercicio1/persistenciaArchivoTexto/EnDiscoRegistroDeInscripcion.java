@@ -10,7 +10,8 @@ import modeloConcurso.RegistroDeInscripcion;
 public class EnDiscoRegistroDeInscripcion implements RegistroDeInscripcion {
 
 	private String pathCasa = "C:\\Users\\Frodo\\Desktop\\Uni\\Objetos 2\\inscriptos.txt";
-	private String pathNote = "C:\\Users\\Marii\\OneDrive\\Escritorio\\Uni\\inscriptos.txt";
+	private String pathNote = "C:\\Users\\Marii\\OneDrive\\Escritorio\\Uni\\inscriptos.txt"; // es mejor pasar el path
+																								// por constructor
 
 	@Override
 	public void registrar(String registro) {

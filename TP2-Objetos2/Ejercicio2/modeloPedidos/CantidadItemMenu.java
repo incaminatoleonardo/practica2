@@ -2,10 +2,10 @@ package modeloPedidos;
 
 public class CantidadItemMenu {
 
-	private itemMenu itemMenu;
+	private ItemMenu itemMenu;
 	private int cantidad;
 
-	public CantidadItemMenu(itemMenu itemMenu, int cantidad) {
+	public CantidadItemMenu(ItemMenu itemMenu, int cantidad) {
 		super();
 		this.itemMenu = itemMenu;
 		this.cantidad = cantidad;
